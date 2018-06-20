@@ -1,0 +1,38 @@
+server:
+  port: 999
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:777/eureka
+spring:
+  application:
+    name: Zuul
+  cloud:
+    config:
+      uri: http://localhost:888
+      name: yml
+      profile: dev
+      label: master
+zuul:
+  ignoredServices: '*'
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  routes:
+    yuml:
+      path: /yuml/**
+      service-id: yuml
+    config:
+      path: /conf/**
+      service-id: config
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+#http://localhost:999/conf/yml/dev/master

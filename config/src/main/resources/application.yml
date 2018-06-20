@@ -1,0 +1,21 @@
+server:
+  port: 888
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:777/eureka
+spring:
+  application:
+    name: Config
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gaxr/config_server_test.git
+          search-paths: yml
+      enabled: true
+      profile: dev
+# http://localhost:888/yml/dev/master
+# http://host:port/name/profiles/label
